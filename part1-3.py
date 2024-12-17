@@ -34,7 +34,10 @@ if __name__ == "__main__":
     insert_test('bob', datetime.now(), 'M')
     insert_test('fab', datetime.now(), 'O')
 
-    cursor.execute('select id, name from test where gender = "M" order by id desc')
+    cursor.execute("""-- sql
+        select id, name from test where gender = "M" 
+        order by id desc
+    """)
     for row in cursor:
         print(row)
     
@@ -43,17 +46,14 @@ if __name__ == "__main__":
         print(cursor.fetchone())
     
     cursor.execute("""-- sql
-            alter table test
-            add column food varchar(50)
-        """)
+            alter table test add column food varchar(50) 
+    """)
     
     cursor.execute("""-- sql
-            alter table test
-            drop column food
-        """)
+            alter table test drop column food 
+    """)
     
     cursor.execute("""-- sql
-            alter table test
-            change name first_name varchar(50)
-        """)
+            alter table test change name first_name varchar(50) 
+    """)
     
