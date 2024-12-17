@@ -24,13 +24,15 @@ SQL_INSERT_USERS = """-- sql
     (name, username, password, email)
     values (%s, %s, %s, %s)
 """
-def insert_user(name, username, password, email):
+def insert_user(name, username, password, email) -> int:
     cursor.execute(SQL_INSERT_USERS, (name, username, password, email))
     db.commit()
+    return cursor.lastrowid
 
-def insert_users(*users):
+def insert_users(*users) -> int:
     cursor.executemany(SQL_INSERT_USERS, users)
     db.commit()
+    return cursor.lastrowid
 
 def setup_users(create:bool=True, drop:bool=True):
     if create:
