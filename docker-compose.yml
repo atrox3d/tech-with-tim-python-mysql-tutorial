@@ -11,8 +11,10 @@ services:
       # MYSQL_USER: your_username
       # MYSQL_PASSWORD: ...
     volumes:
-      - ./mysql_data:/var/lib/mysql
-      - ./mysql_dump:/dump
+      # - ./mysql_data:/var/lib/mysql
+      - ${HOME}/code/mysql/MYSQL-DOCKER-DATA-DIR:/var/lib/mysql
+      # - ./mysql_dump:/dump⁄
+      - ${HOME}/code/mysql/MYSQL-INPUT-OUTPUT/:/dump
     ports:
       - "3306:3306"
     secrets:
